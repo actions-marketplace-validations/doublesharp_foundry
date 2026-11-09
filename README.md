@@ -1,3 +1,28 @@
+# Setup forgeds and Solar
+
+Install verified prebuilt forgeds and optional Solar in GitHub Actions. The action uses exact
+binary caching, downloads no archives on a warm install, and requires no Rust compilation.
+
+```yaml
+- uses: actions/checkout@v4
+- uses: doublesharp/foundry@setup-forgeds-v1
+  with:
+    solar-version: v0.3.0
+    forge-alias: 'true'
+    cache-compilers: 'true'
+- run: forge test --use solar
+```
+
+Omit `solar-version` to use your project's existing compiler and run `forgeds test`.
+The `forge` alias and shared Solidity compiler caching are opt-in. Action release refs contain
+only the installer, pinned checksums, metadata, documentation and licenses.
+
+See the [action guide](SETUP_FORGEDS.md) for supported platforms, version pins, inputs, outputs,
+and automated releases. Read [what forgeds adds to Foundry](https://github.com/doublesharp/foundry/blob/feature/viair-instrumented-coverage/FORGEDS.md).
+
+<details>
+<summary>Upstream Foundry toolkit documentation</summary>
+
 <div align="center">
   <img src=".github/assets/banner.png" alt="Foundry banner" />
 
@@ -109,3 +134,5 @@ shall be dual licensed as above, without any additional terms or conditions.
 </sub>
 
 [foundry-docs]: https://getfoundry.sh
+
+</details>
